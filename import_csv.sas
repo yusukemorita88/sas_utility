@@ -3,5 +3,5 @@ proc import out= csvdata
     dbms=csv replace;
     getnames=yes;
     datarow=2;
-    guessingrows=200;
+    guessingrows=max;
 run; 

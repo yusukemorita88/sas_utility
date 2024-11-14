@@ -22,14 +22,14 @@
 
 proc sql noprint;
     create table llt2  as
-        select L.*, R.VAR2 as llt_j
+        select L.*, R.VAR2 as llt_j, R.VAR3 as currency_j
         from llt as L
         inner join llt_j as R 
         on L.VAR1 = R.VAR1
     ;        
     ;
     create table llt_pt as
-        select L.VAR1 as llt_code, L.VAR2 as llt , L.llt_j, L.VAR10 as currency, L.VAR3 as pt_code, R.VAR2 as pt, R.VAR4 as soc_code
+        select L.VAR1 as llt_code, L.VAR2 as llt , L.llt_j, L.VAR10 as currency, L.currency_j, L.VAR3 as pt_code, R.VAR2 as pt, R.VAR4 as soc_code
         from llt2 as L
         inner join pt as R 
         on L.VAR3 = R.VAR1
@@ -53,3 +53,11 @@ proc sql noprint;
         on L.soc_code = R.VAR1
     ;
 quit;
+
+
+libname save ".";
+
+data save.meddra;
+    set meddra;
+run;
+

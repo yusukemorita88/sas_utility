@@ -10,3 +10,14 @@ proc import out= csvdata
     datarow=2;
     guessingrows=max;
 run; 
+
+
+*specify encoding;
+filename _UTF "fullpath for csv" encoding='utf-8';
+proc import datafile=_UTF out=csvdata
+    dbms=csv replace; 
+    getnames=yes;
+    delimiter=",";
+    datarow=2;
+    guessingrows=max;
+run;
